@@ -1,5 +1,7 @@
-
-
+import { createGrid } from './grid.js';
+import {userInterface } from './ui.js';
+import { loadStorage } from './storage.js';
+import { resetProgress } from './coloring.js';
 
 export const puzzles = [
     {name: "Canvas", id: "Canvas"},
@@ -15,12 +17,9 @@ let currentPuzzleIndex = 0;
 export function loadPuzzle(index){
     currentPuzzleIndex = index;
     localStorage.setItem('colorByNumber_Puzzle', index);
-
     resetProgress();
-
     const puzzle = puzzles[index];
     const storageData = loadStorage(puzzle.id);
-
     createGrid(puzzle, storageData);
 }
 
@@ -30,7 +29,6 @@ export function getCurrentPuzzle() {
 
 window.onload = () => {
     const saved = Number(localStorage.getItem('colorByNumber_Puzzle')) || 0;
-
-    initUI(loadPuzzle);
+    userInterface(loadPuzzle);
     loadPuzzle(saved);
 }

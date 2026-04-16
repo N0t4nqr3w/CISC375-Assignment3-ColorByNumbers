@@ -4,7 +4,6 @@ function getId(puzzleId){
 
 export function loadStorage(puzzleId){
     let data = localStorage.getItem(getId(puzzleId));
-
     if(data === null) {
         data = createStorage(puzzleId);
     }

@@ -20,7 +20,7 @@ All the responsibilities are intertwined in this single file as my team is const
 There are some comments for each function, and some lines of code for specific mechanics that bring clarity to what it does.  
 
  
-
+![image](https://github.com/N0t4nqr3w/CISC375-Assignment3-ColorByNumbers/blob/Assignment-3/public/images/Diagram.png?raw=true)
  
 
 First, I created about 6 or more modules that will go through similar functions together, but it got hectic and confusing when I was importing and exporting files

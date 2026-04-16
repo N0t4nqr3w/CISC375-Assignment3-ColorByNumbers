@@ -1,5 +1,3 @@
-import { createGrid } from "./public/js/puzzles";
-
 let loaded_puzzle = 0; //index of the current puzzle we have loaded
 let current_colors = new Set(); //set of rgba color strings in the loaded image
 let selected_color = '';
@@ -38,7 +36,69 @@ function setTitle(name) {
 
 
 //go through the pixel data of the current image and create a grid cell for each one
-createGrid();
+function createGrid() {
+    progress = 0;
+    setTitle(`${puzzles[loaded_puzzle].name} - 0%`);
+    const grid = document.querySelector("#puzzle-grid");
+    grid.innerHTML = "";
+
+    let data = getImageData(puzzles[loaded_puzzle].id);
+    //using a set for colors, we can attempt to add every color in the data and it will automatically remove duplicates
+    current_colors.clear();
+    let current_storage = loadStorage();
+    let x = 0;
+    let y = 0;
+    for(let i = 0; i<data.length;i+=4) {
+        const cell = document.createElement("button");
+        cell.className = "grid-cell";
+        cell.id = `cell-${x}-${y}`;
+        cell.dataset.x = x;
+        cell.dataset.y = y;
+
+        let r = data[i];
+        let g = data[i+1];
+        let b = data[i+2];
+        let a = data[i+3]/255.0;
+        let color = `rgba(${r},${g},${b},${a})`;
+        current_colors.add(color);
+        cell.dataset.c = color;
+        
+        grid.appendChild(cell);
+        
+        if(current_storage[convertCoordsToIndex(x,y)] == '0') { //cell has not been clicked in storage
+            cell.addEventListener('pointerdown', ()=> {
+                buttonClick(cell);
+            });
+
+            cell.addEventListener('pointerenter', ()=> {
+                if(held_down) {
+                    buttonClick(cell);
+                }
+            });  
+            cell.addEventListener('keydown', (e)=>{
+                if(e.key=="Enter"||e.key==" ") {
+                    buttonClick(cell);
+                }
+            });
+        } else { //cell has been clicked in storage
+            cell.style.backgroundColor = color;
+            cell.style.color = color;
+            cell.textContent = '0';
+            updateProgress();
+            cell.style.cursor = "default";
+        }
+
+       
+        
+        x++;
+        if(x>15) {
+            x=0;
+            y++;
+        }
+    }
+
+    createColorList(current_storage);
+}
 
 
 //change to a new loaded puzzle
@@ -114,7 +174,7 @@ function getImageData(image_id) {
 
 
 //fills in the clicked cell with the correct color if it is the currently selected color (and it isn't already filled)
-function buttonClick(button) {  
+function buttonClick(button) {
     let current_data = loadStorage();
     const storage_index = convertCoordsToIndex(Number(button.dataset.x),Number(button.dataset.y));
     if(current_data[storage_index]=='0' && button.dataset.c == selected_color) {

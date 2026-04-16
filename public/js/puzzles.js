@@ -1,3 +1,5 @@
+import { buttonClick, isHeldDown } from './ui.js';
+
 export let loaded_puzzle = 0;
 export let current_colors = new Set();
 export let selected_color = "";
@@ -47,12 +49,12 @@ export function createGrid() {
         
         if(current_storage[convertCoordsToIndex(x,y)] == '0') {
             cell.addEventListener('pointerdown', () => {
-                import('./ui.js').then(m => m.buttonClick(cell));
+                buttonClick(cell);
             });
             cell.addEventListener('pointerenter', () => {
-                import('./ui.js').then(m => {
-                    if(m.isHeldDown()) m.buttonClick(cell);
-                });
+                if(isHeldDown()) {
+                    buttonClick(cell);
+                }
             });
         } else {
             cell.style.backgroundColor = color;

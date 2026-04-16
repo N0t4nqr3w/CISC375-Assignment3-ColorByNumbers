@@ -15,7 +15,7 @@ export function setTitle(name) {
 
 export function buttonClick(button) {
     let data = loadStorage();
-    const index = convertCoordsToIndex(+button.dataset.x, +button.dataset.y);
+    const index = convertCoordsToIndex(Number(button.dataset.x), Number(button.dataset.y));
 
     if(data[index] === '0' && button.dataset.c === selected_color) {
         button.style.backgroundColor = button.dataset.c;
@@ -29,15 +29,22 @@ export function buttonClick(button) {
 
 export function switchColor(button) {
     document.querySelectorAll("#color-selector button").forEach(b => b.classList.remove("selected"));
+    button.classList.add("selected");
+    setSelectedColor(button.dataset.c);
 }
 
 export function updateProgress() {
     progress++;
-    const percent = Math.round((progress / 256) * 100);
-    setTitle(`${puzzle[loaded_puzzle].name} - ${percent}%`);
-
+    let percent = Math.round((progress / 256) * 100);
+    if(progress<256 && percent==100) {
+        percent = 99;
+    }
+    setTitle(`${puzzles[loaded_puzzle].name} - ${percent}%`);
     if(progress >= 256) {
-        document.querySelectorAll('.grid-cell').forEach(c => c.style.borderColor = 'transparent');
+        const cell = document.querySelectorAll('.grid-cell');
+        for(let i=0;i<cells.length;i++) {
+            cells[i].style.borderColor = 'transparent';
+        }
     }
 }
 
@@ -80,21 +87,21 @@ export function changePalette(index) {
     localStorage.setItem('colorByNumbers_Palette', index);
     const s = document.documentElement.style;
 
-    if(index === 0) {
+    if(index == 0) {
         s.setProperty('--font-color', '#ffffff');
         s.setProperty('--main-bg-color', '#363d66');
         s.setProperty('--second-bg-color', '#040c40');
         s.setProperty('--border-color', '#1d2453');
-    } else if (index === 1) {
+    } else if (index == 1) {
         s.setProperty('--font-color', '#000000');
-        s.setProperty('--font-color', '#ffffff');
-        s.setProperty('--font-color', '#c8c8c8');
-        s.setProperty('--font-color', '#969696');
+        s.setProperty('--main-bg-color', '#ffffff');
+        s.setProperty('--second-bg-color', '#c8c8c8');
+        s.setProperty('--border-color', '#969696');
     } else {
         s.setProperty('--font-color', '#ffffff');
-        s.setProperty('--font-color', '#2b2b2b');
-        s.setProperty('--font-color', '#181C14');
-        s.setProperty('--font-color', '#000000');
+        s.setProperty('--main-bg-color', '#2b2b2b');
+        s.setProperty('--second-bg-color', '#181C14');
+        s.setProperty('--border-color', '#000000');
     }
 }
 

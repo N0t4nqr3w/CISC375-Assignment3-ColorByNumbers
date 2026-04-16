@@ -1,4 +1,4 @@
-import { buttonClick, isHeldDown } from './ui.js';
+import { buttonClick, isHeldDown, createColorList } from './ui.js';
 
 export let loaded_puzzle = 0;
 export let current_colors = new Set();
@@ -30,7 +30,7 @@ export function changePage(index) {
 export function createGrid() {
     const grid = document.querySelector("#puzzle-grid");
     grid.innerHTML = "";
-    const data = getImageData(puzzles[loaded_puzzle].id);
+    let data = getImageData(puzzles[loaded_puzzle].id);
     current_colors.clear();
     const current_storage = loadStorage();
     let x = 0;
@@ -68,7 +68,7 @@ export function createGrid() {
             y++;
         }
     }
-    import('./public/js/ui.js').then(m => m.createColorList(current_storage));
+    createColorList(current_storage);
 }
 
 export function getImageData(image_id) {

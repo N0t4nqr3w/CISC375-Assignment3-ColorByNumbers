@@ -45,13 +45,3 @@ Then DOM manipulation for the ui.js file to
   - Switching between the colors. 
     
   - Saving cell data into the local storage. 
-
- 
-
-In the end, what I learned about modular design is that it takes a lot looking through large amounts of code and reconstructing that will fit into a module. 
-Another thing I learned was that most of the errors I encountered were import and export errors between different modules as it gives crash errors due to an import. 
-A specific challenge I faced was a whole lot of errors when converting the 444 lines of code into separate modules. Testing it was the most irritating part as looking 
-at the module, you think it will work but running the website and seeing that it does not work and more errors show up. I think what I would refactor next if I had more 
-time was maybe trying to separate the create Grid itself into it’s own module as it was most of the code that was taking a lot of line of code. Or the Game Logic as I think it 
-requires it’s own module for being used for saving data from mouse interactions and the correct number on the correct cell. Also, trying to finish the modules itself as it was close 
-to being exact with the raw code in assignment2.js, but some errors still occurred. 

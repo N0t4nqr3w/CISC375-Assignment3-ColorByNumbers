@@ -29,7 +29,7 @@ from different js files, which resulted in having a circular loop of errors and 
 I decided to refactor the Data Loading + Game Logic into one module called Puzzle.js and DOM mainpulation + Event Handling into another module called ui.js. 
 I created another JavaScript file called main.js to execute both puzzle.js and ui.js. Doing this I created similar functions from the assignment2.js that will: 
 
-Create more clarity for seeing where or how the Game logic + Data Loading as in seeing 
+Create more clarity in puzzles.js for seeing where or how the Game logic + Data Loading as in seeing 
   - How the grid is made and constructed from the image 
   
   - How the numbers are processed onto the grid in puzzle.js.  
@@ -44,4 +44,12 @@ Then DOM manipulation for the ui.js file to
     
   - Switching between the colors. 
     
-  - Saving cell data into the local storage. 
+  - Saving cell data into the local storage.
+    
+Finally, main.js will handle the event handling part:
+
+  - The keyboard controls that is in assignment2.js
+
+  - The settings UI when changing light and dark themes.
+
+  - And the window.onload = ()=>{changePage(Number(localStorage.getItem('colorByNumbers_Puzzle')));createPuzzleList();}; that wait for all image elements to load.

@@ -1,5 +1,17 @@
-From my Assignment 2, the current architecture only has index.html, which boots up the page, the assignment.css that brings visuals such as color and organization, 
-and then the JavaScript file called assignment.js that does the DOM Manipulation, Game Logic, and some visuals changes to name a few. As I said before, there is only one 
+-------Modular Architecture Proposal----------
+
+From my Assignment 2, the current architecture only has index.html: 
+
+- Boots up the page
+
+The assignment.css: 
+
+- brings visuals such as color and organization
+
+Then the JavaScript file called assignment.js
+
+- Does the DOM Manipulation, Game Logic, and some visuals changes to name a few. As I said before, there is only one
+
 JavaScript file called assignment2.js. For further understanding of the file, it: 
 
 - Saves the data of all the images in the images file.  
@@ -22,6 +34,7 @@ There are some comments for each function, and some lines of code for specific m
  
 ![image](https://github.com/N0t4nqr3w/CISC375-Assignment3-ColorByNumbers/blob/Assignment-3/Diagram.png?raw=true)
  
+----------- Implement at least 2 refactor changes-------
 
 First, I created about 6 or more modules that will go through similar functions together, but it got hectic and confusing when I was importing and exporting files
 from different js files, which resulted in having a circular loop of errors and bugs. So, I decided to scrap the whole process and simple it down to 3 modules.  

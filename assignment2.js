@@ -174,7 +174,7 @@ function getImageData(image_id) {
 
 
 //fills in the clicked cell with the correct color if it is the currently selected color (and it isn't already filled)
-function buttonClick(button) {
+function buttonClick(button) {  
     let current_data = loadStorage();
     const storage_index = convertCoordsToIndex(Number(button.dataset.x),Number(button.dataset.y));
     if(current_data[storage_index]=='0' && button.dataset.c == selected_color) {

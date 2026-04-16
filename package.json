@@ -1,0 +1,20 @@
+{
+  "name": "cisc375-assignment3-colorbynumbers",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/N0t4nqr3w/CISC375-Assignment3-ColorByNumbers#readme",
+  "bugs": {
+    "url": "https://github.com/N0t4nqr3w/CISC375-Assignment3-ColorByNumbers/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N0t4nqr3w/CISC375-Assignment3-ColorByNumbers.git"
+  },
+  "license": "ISC",
+  "author": "Andrew Yang",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
